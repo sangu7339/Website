@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferBeez - Digital Promotion Platform for Local Businesses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF5A5F;
+            --primary-dark: #E53945;
+            --secondary: #00A0B0;
+            --accent: #FFC107;
+            --dark: #2C3E50;
+            --light: #FFFFFF;
+            --light-gray: #F5F7FA;
+            --medium-gray: #E0E6ED;
+            --dark-gray: #6B7C93;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .main-content {
+            background-color: var(--light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .navbar {
+            background-color: var(--light);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        
+        .navbar.scrolled {
+            height: 70px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin-left: auto;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .cta-button.primary {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+        
+        .cta-button.primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .cta-button.outline {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: transparent;
+        }
+        
+        .cta-button.outline:hover {
+            background-color: var(--primary);
+            color: var(--light);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 180px 0 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background-color: var(--light);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        .hero-image {
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateX(10deg);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        /* Content Sections */
+        .section {
+            padding: 100px 0;
+            position: relative;
+            background-color: var(--light);
+        }
+        
+        .section-alt {
+            background-color: var(--light-gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--light-gray);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .service-card i {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+        
+        /* Who Benefits Section */
+        .benefits-section {
+            background-color: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefits-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .benefits-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 30px 25px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+        
+        .benefit-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .benefit-card h3 {
+            font-size: 18px;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .benefit-card p {
+            color: var(--dark-gray);
+            font-size: 14px;
+        }
+        
+        /* Workflow Section */
+        .workflow-section {
+            background-color: var(--light-gray);
+            position: relative;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            z-index: 1;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--medium-gray);
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .step-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .step-content p {
+            color: var(--dark-gray);
+            line-height: 1.8;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: var(--light);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--medium-gray);
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-size: 16px;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            font-size: 14px;
+            color: var(--dark-gray);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background-color: var(--light);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+            position: relative;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-col h3 {
+            font-size: 18px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .footer-col p {
+            color: #CCCCCC;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #CCCCCC;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #AAAAAA;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: perspective(1000px) rotateX(10deg) translateY(0);
+            }
+            50% {
+                transform: perspective(1000px) rotateX(10deg) translateY(-20px);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 160px 0 100px;
+            }
+            
+            .section {
+                padding: 80px 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+                height: 70px;
+            }
+            
+            .logo img {
+                height: 35px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-button {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--dark);
+                font-size: 24px;
+                cursor: pointer;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .workflow-steps::before {
+                left: 25px;
+            }
+            
+            .step {
+                padding: 25px;
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 30px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .step-number {
+                margin: 0 auto;
+            }
+            
+            .cta-section h2 {
+                font-size: 28px;
+            }
+            
+            .cta-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <!-- Header -->
+        <header class="navbar" id="navbar">
+            <div class="logo">
+                <img src="offerbeez-logo.png" alt="OfferBeez Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#benefits">Who Benefits</a></li>
+                <li><a href="#workflow">How It Works</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <!-- <div class="button-group">
+                <a href="#" class="cta-button outline">Login</a>
+                <a href="#" class="cta-button primary">Get Started</a>
+            </div> -->
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Boost Your Business with Smart Digital Promotions</h1>
+                <p>OfferBeez connects local businesses with customers through powerful, targeted promotions that drive real results.</p>
+                <div class="button-group">
+                    <a href="#" class="cta-button primary">Start Free Trial</a>
+                    <a href="#" class="cta-button outline">See How It Works</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Why Choose OfferBeez?</h3>
+                        <p>OfferBeez is revolutionizing how local businesses connect with customers through digital promotions. Our platform creates a win-win ecosystem where businesses can attract more customers while shoppers save money.</p>
+                        <p>Founded in 2023, we've quickly become the leading platform for local promotions, serving thousands of businesses across multiple cities. Our unique three-app system ensures everyone in the promotional chain benefits.</p>
+                        <div class="button-group" style="justify-content: flex-start;">
+                            <a href="#" class="cta-button primary">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="image.png" alt="OfferBeez Team">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="section services-section" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Our Solutions</h2>
+                    <p>Comprehensive tools designed for businesses, partners, and consumers</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-store"></i>
+                        <h3>For Businesses</h3>
+                        <p>Create and manage promotional offers with our easy-to-use tools. Track performance with real-time analytics and customer engagement metrics.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>For Sales Partners</h3>
+                        <p>Earn generous commissions by onboarding local businesses and helping them create their first offers through our partner program.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-shopping-bag"></i>
+                        <h3>For Consumers</h3>
+                        <p>Discover the best local deals based on your location and preferences, with smart filters and personalized recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Benefits Section -->
+        <section class="section benefits-section" id="benefits">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Who Benefits From OfferBeez</h2>
+                    <p>Discover how different businesses and individuals use our platform</p>
+                </div>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-utensils benefit-icon"></i>
+                        <h3>Restaurants</h3>
+                        <p>Fill tables during slow hours and attract new customers</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-cut benefit-icon"></i>
+                        <h3>Salons</h3>
+                        <p>Book more appointments and build client loyalty</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-store benefit-icon"></i>
+                        <h3>Retail Stores</h3>
+                        <p>Increase foot traffic and clear inventory</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-dumbbell benefit-icon"></i>
+                        <h3>Gyms</h3>
+                        <p>Attract new members and reduce cancellations</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-user-shield benefit-icon"></i>
+                        <h3>Small Businesses</h3>
+                        <p>Compete with larger chains through targeted promotions</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-building benefit-icon"></i>
+                        <h3>Medium Businesses</h3>
+                        <p>Scale your promotions across multiple locations</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-graduation-cap benefit-icon"></i>
+                        <h3>College Students</h3>
+                        <p>Save money on local services and products</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-suitcase-rolling benefit-icon"></i>
+                        <h3>Travelers & Tourists</h3>
+                        <p>Discover local deals in new cities</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-users benefit-icon"></i>
+                        <h3>General Public</h3>
+                        <p>Find great deals in your neighborhood</p>
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-user-tie benefit-icon"></i>
+                        <h3>Freelancers</h3>
+                        <p>Promote your services to local clients</p>
+                    </div>
+                    <!-- <div class="benefit-card">
+                        <i class="fas fa-bullhorn benefit-icon"></i>
+                        <h3>Marketing Agents</h3>
+                        <p>Earn commissions by promoting local businesses</p>
+                    </div> -->
+                    <!-- <div class="benefit-card">
+                        <i class="fas fa-home benefit-icon"></i>
+                        <h3>Local Residents</h3>
+                        <p>Support neighborhood businesses while saving</p>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section class="section workflow-section" id="workflow">
+            <div class="container">
+                <div class="section-title">
+                    <h2>How It Works</h2>
+                    <p>Get started with OfferBeez in just a few simple steps</p>
+                </div>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Sign Up</h3>
+                            <p>Create your account as a business, sales partner, or consumer in just a few minutes with our streamlined registration process.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Set Up</h3>
+                            <p>Businesses create compelling offers, partners onboard local businesses, and consumers set their preferences to see relevant deals.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Engage</h3>
+                            <p>Start promoting your business, earning commissions as a partner, or saving money as a consumer with our comprehensive tools.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Grow</h3>
+                            <p>Track performance with real-time analytics, optimize your strategy based on insights, and watch your business or savings grow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section testimonials-section" id="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What Our Clients Say</h2>
+                    <p>Hear from businesses and partners who are seeing real results</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "Since using OfferBeez, we've seen a 40% increase in new customers. The platform is incredibly easy to use and the results speak for themselves."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="image.png" alt="Sarah Johnson">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sainath Patil</h4>
+                                <p>Café Owner, Seattle</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "As a sales partner, I've been able to earn substantial commissions while helping local businesses grow. The support from OfferBeez is outstanding."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="offerbeez-logo.png" alt="Michael Chen">
+                            </div>
+                            <div class="author-info">
+                                <h4>Nandan VB</h4>
+                                <p>Sales Partner, Bengaluru</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            "I save hundreds each month using OfferBeez to find deals at my favorite local businesses. It's become an essential part of my shopping routine."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="offerbeez-logo.png" alt="Emily Rodriguez">
+                            </div>
+                            <div class="author-info">
+                                <h4>Sangamesh seegi</h4>
+                                <p>College Student, Bengaluru</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Business?</h2>
+                <p>Join thousands of businesses already growing with OfferBeez. Start your free trial today.</p>
+                <div class="button-group">
+                    <a href="#" class="cta-button primary">Start Free Trial</a>
+                    <a href="#" class="cta-button outline">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>OfferBeez</h3>
+                    <p>One Platform. Endless Promotions connecting local businesses with customers through digital offers.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Our Services</a></li>
+                        <li><a href="#benefits"><i class="fas fa-chevron-right"></i> Who Benefits</a></li>
+                        <li><a href="#workflow"><i class="fas fa-chevron-right"></i> How It Works</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Help Center</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> API Documentation</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Community</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Webinars</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i>2nd Floor, No 16, Puttenahalli Rd, Wilson Garden Society, JP Nagar 7th Phase, Bengaluru, Karnataka 560078</a></li>
+                        <li><a href="tel:+18005551234"><i class="fas fa-phone"></i> +91 9611240148</a></li>
+                        <li><a href="mailto:info@offerbeez.com"><i class="fas fa-envelope"></i> info@offerbeez.com</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 OfferBeez. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.section-title, .service-card, .benefit-card, .step, .testimonial-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.section-title, .service-card, .benefit-card, .step, .testimonial-card').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
