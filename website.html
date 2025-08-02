@@ -1245,6 +1245,389 @@
                 margin: 0 auto;
             }
         }
+        /* ...............................support css........................................... */
+
+        * {
+      box-sizing: border-box;
+    }
+    
+  
+
+    /* Floating Chat Button */
+    a#openChatLink {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      /* background: linear-gradient(135deg, #FF6B6B 0%, #FF5A5F 50%, #E94A4F 100%); */
+      /* color: white; */
+      /* padding: 16px 24px; */
+      /* border-radius: 50px; */
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      /* box-shadow: 0 8px 25px rgba(255, 90, 95, 0.35), 0 4px 12px rgba(0, 0, 0, 0.15); */
+      z-index: 999;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    a#openChatLink:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 35px rgba(255, 90, 95, 0.45), 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+  
+
+    /* Chat Widget Container */
+    .offerbeez-chat-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      font-family: 'Inter', sans-serif;
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .offerbeez-chat-widget.show {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .chat-container {
+      width: 380px;
+      height: 500px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Header */
+    .chat-header {
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF5A5F 50%, #E94A4F 100%);
+      color: white;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+
+    .header-info h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .header-info p {
+      margin: 2px 0 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .close-chat {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      margin-left: auto;
+    }
+
+    .close-chat:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Messages Area */
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      background: #f9f9f9;
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-messages::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: rgba(255, 90, 95, 0.3);
+      border-radius: 2px;
+    }
+
+    .message {
+      margin-bottom: 16px;
+      animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(10px);
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+
+    /* Bot Messages */
+    .bot-message .message-content {
+      background: white;
+      color: #333;
+      padding: 12px 16px;
+      border-radius: 16px 16px 16px 4px;
+      display: inline-block;
+      max-width: 85%;
+      box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        0 1px 3px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* User Messages */
+    .user-message {
+      text-align: right;
+    }
+
+    .user-message .message-content {
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF5A5F 100%);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 16px 16px 4px 16px;
+      display: inline-block;
+      max-width: 85%;
+      box-shadow: 
+        0 2px 8px rgba(255, 90, 95, 0.2),
+        0 1px 3px rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* Message Options */
+    .message-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .option-btn {
+      background: white;
+      border: 1px solid rgba(255, 90, 95, 0.2);
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: #FF5A5F;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 500;
+    }
+
+    .option-btn:hover {
+      background: rgba(255, 90, 95, 0.05);
+      transform: translateY(-1px);
+    }
+
+    /* Contact Card */
+    .contact-card {
+      background: white;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-card p {
+      margin: 6px 0;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .contact-card .contact-title {
+      font-weight: 600;
+      color: #FF5A5F;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .contact-action {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 12px;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF5A5F 100%);
+      color: white;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* App Links */
+    .app-links {
+      margin-top: 12px;
+    }
+
+    .app-link {
+      display: block;
+      padding: 8px 12px;
+      background: white;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      text-decoration: none;
+      color: #333;
+      transition: all 0.2s ease;
+    }
+
+    .app-link:hover {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .app-link i {
+      margin-right: 8px;
+      color: #FF5A5F;
+    }
+
+    /* Loading/Typing Indicator */
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .loading-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .loading-dot {
+      width: 8px;
+      height: 8px;
+      background: #FF5A5F;
+      border-radius: 50%;
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+
+    .loading-dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .loading-dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes bounce {
+      0%, 80%, 100% { 
+        transform: scale(0.6);
+        opacity: 0.5;
+      }
+      40% { 
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Input Form */
+    .chat-input-form {
+      display: flex;
+      padding: 12px 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      background: white;
+    }
+
+    .chat-input-form input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      outline: none;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+    }
+
+    .chat-input-form input:focus {
+      border-color: #FF5A5F;
+      background: white;
+    }
+
+    .chat-input-form input::placeholder {
+      color: #999;
+    }
+
+    .chat-input-form button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF6B6B 0%, #FF5A5F 100%);
+      color: white;
+      border: none;
+      margin-left: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .chat-input-form button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 480px) {
+      a#openChatLink {
+        bottom: 16px;
+        right: 16px;
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      
+      .offerbeez-chat-widget {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+      }
+      
+      .chat-container {
+        width: 100%;
+        height: 70vh;
+        max-height: 500px;
+      }
+    }
+
+    /* Hide chat widget initially */
+    #chatWrapper {
+      display: none;
+    }
     </style>
 </head>
 <body>
@@ -1272,17 +1655,44 @@
                 <p>OfferBeez connects local businesses with customers through powerful, targeted promotions that drive real results.</p>
                 <div class="button-group">
                     <a href="#" class="cta-button primary">Start Free Trial</a>
-                    <a href="#" class="cta-button outline">See How It Works</a>
+                    <a href="#workflow" class="cta-button outline">See How It Works</a>
                 </div>
             </div>
         </section>
+        <!-- ..............................support code........................................... -->
         <div class="support-container">
   <div class="support-tooltip">Need help? Contact support</div>
-  <a href="/support" class="support-button">
+  <a href="" class="support-button" id="openChatLink"> >
     <i class="fas fa-headset"></i>
     Support
   </a>
 </div>
+<!-- Chat Widget -->
+  <div id="chatWrapper">
+    <div class="offerbeez-chat-widget" id="chatWidget">
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="header-info">
+            <h3>Support</h3>
+            <p>We're here to help!</p>
+          </div>
+          <button class="close-chat" id="closeChatBtn">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages"></div>
+        
+        <form class="chat-input-form" id="chatForm">
+          <input type="text" id="messageInput" placeholder="Ask us anything..." required />
+          <button type="submit">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- ................................................................................. -->
 
         <!-- About Section -->
         <section class="section" id="about">
@@ -1762,6 +2172,351 @@
                 heroContent.style.transform = `translateY(${scrollPosition * 0.2}px)`;
             }
         });
-    </script>
+        // ...............................................support code...........................................
+       const conversationData = {
+      greeting: {
+        text: "👋 Welcome to OfferBeez Support! How can we assist you today?",
+        options: ["Product Features", "Business Inquiry", "Technical Support", "Contact Information", "Download Apps"]
+      },
+      "Product Features": {
+        text: "**OfferBeez Platform Features:**\n\n• Business Promotion App\n• Consumer Deal Discovery\n• Sales Partner Program\n• Real-time Analytics\n• Location-based Offers",
+        options: ["Business App", "Consumer App", "Sales Partner", "← Back"]
+      },
+      "Business Inquiry": {
+        text: "For business inquiries, our team would be happy to assist you.",
+        options: ["Schedule Demo", "Partnership Info", "Pricing", "Contact Business Team", "← Back"]
+      },
+      "Technical Support": {
+        text: "For technical support, please describe your issue and we'll help troubleshoot.",
+        options: ["Report an Issue", "Contact Support", "← Back"]
+      },
+      "Contact Information": {
+        text: "Here's how to reach us:",
+        options: ["Email Us", "Call Us", "Visit Us", "← Back"],
+        contactCard: `
+          <div class="contact-card">
+            <div class="contact-title">📌 Our Office</div>
+            <p>2nd Floor, No 16, Puttenahalli Rd<br>
+            Wilson Garden Society, JP Nagar 7th Phase<br>
+            Bengaluru, Karnataka 560078</p>
+            
+            <div class="contact-title">📞 Phone Support</div>
+            <p>+91 9611240148<br>
+            (Mon-Fri, 9AM-6PM IST)</p>
+            
+            <div class="contact-title">✉️ Email</div>
+            <p>info@offerbeez.com</p>
+          </div>
+        `
+      },
+      "Download Apps": {
+        text: "Download our apps for different user types:",
+        options: ["Business App", "Consumer App", "Partner App", "← Back"],
+        appLinks: `
+          <div class="app-links">
+            <a href="https://play.google.com/store/apps/details?id=com.offerbeez.business" target="_blank" class="app-link">
+              <i class="fas fa-briefcase"></i> Business App (Play Store)
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.offerbeez.consumer" target="_blank" class="app-link">
+              <i class="fas fa-shopping-bag"></i> Consumer App (Play Store)
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.offerbeez.partner" target="_blank" class="app-link">
+              <i class="fas fa-handshake"></i> Partner App (Play Store)
+            </a>
+          </div>
+        `
+      },
+      "Email Us": {
+        text: "You can email us at:",
+        options: ["Open Email", "← Back to Contacts"],
+        contactCard: `
+          <div class="contact-card">
+            <p><strong>General Inquiries:</strong> info@offerbeez.com</p>
+            <p><strong>Business Partnerships:</strong> partnerships@offerbeez.com</p>
+            <p><strong>Technical Support:</strong> support@offerbeez.com</p>
+            <a href="mailto:info@offerbeez.com" class="contact-action">
+              <i class="fas fa-envelope"></i> Email Now
+            </a>
+          </div>
+        `
+      },
+      "Call Us": {
+        text: "You can reach our support team at:",
+        options: ["Call Now", "← Back to Contacts"],
+        contactCard: `
+          <div class="contact-card">
+            <p><strong>Customer Support:</strong> +91 9611240148</p>
+            <p>Available Monday-Friday, 9AM-6PM IST</p>
+            <a href="tel:+919611240148" class="contact-action">
+              <i class="fas fa-phone"></i> Call Now
+            </a>
+          </div>
+        `
+      },
+      "Visit Us": {
+        text: "You're welcome to visit our office:",
+        options: ["Get Directions", "← Back to Contacts"],
+        contactCard: `
+          <div class="contact-card">
+            <div class="contact-title">📍 Office Address</div>
+            <p>2nd Floor, No 16, Puttenahalli Rd<br>
+            Wilson Garden Society, JP Nagar 7th Phase<br>
+            Bengaluru, Karnataka 560078</p>
+            
+            <div class="contact-title">⏰ Visiting Hours</div>
+            <p>Monday-Friday<br>
+            10:00 AM - 5:00 PM IST</p>
+            
+            <a href="https://maps.google.com?q=OfferBeez+2nd+Floor,+No+16,+Puttenahalli+Rd,+Wilson+Garden+Society,+JP+Nagar+7th+Phase,+Bengaluru,+Karnataka+560078" 
+               target="_blank" class="contact-action">
+              <i class="fas fa-map-marker-alt"></i> Get Directions
+            </a>
+          </div>
+        `
+      },
+      "Business App": {
+        text: "**OfferBeez Business App**\n\nManage your promotions, track performance, and connect with customers.",
+        options: ["Download Business App", "Features", "← Back"],
+        appLinks: `
+          <div class="app-links">
+            <a href="https://business.offerbeez.in" target="_blank" class="app-link">
+              <i class="fab fa-google-play"></i> Download on Play Store
+            </a>
+            <a href="https://apps.apple.com/in/app/offerbeez-business/id123456789" target="_blank" class="app-link">
+              <i class="fab fa-apple"></i> Download on App Store
+            </a>
+          </div>
+        `
+      },
+      "Consumer App": {
+        text: "**OfferBeez Consumer App**\n\nDiscover amazing deals and promotions from local businesses.",
+        options: ["Download Consumer App", "How It Works", "← Back"],
+        appLinks: `
+          <div class="app-links">
+            <a href="https://user.offerbeez.in/" target="_blank" class="app-link">
+              <i class="fab fa-google-play"></i> Download on Play Store
+            </a>
+            <a href="https://user.offerbeez.in/" target="_blank" class="app-link">
+              <i class="fab fa-apple"></i> Download on App Store
+            </a>
+          </div>
+        `
+      },
+      "Partner App": {
+        text: "**OfferBeez Partner App**\n\nJoin our network and earn by helping businesses grow.",
+        options: ["Download Partner App", "Benefits", "← Back"],
+        appLinks: `
+          <div class="app-links">
+            <a href="https://partner.offerbeez.in" target="_blank" class="app-link">
+              <i class="fab fa-google-play"></i> Download on Play Store
+            </a>
+            <a href="https://partner.offerbeez.in" target="_blank" class="app-link">
+              <i class="fab fa-apple"></i> Download on App Store
+            </a>
+          </div>
+        `
+      }
+    };
+
+    const messageInput = document.getElementById('messageInput');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatWidget = document.getElementById('chatWidget');
+
+    // Open chat
+    document.getElementById('openChatLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('chatWrapper').style.display = 'block';
+      setTimeout(() => {
+        chatWidget.classList.add('show');
+        showBotMessage(conversationData.greeting.text, conversationData.greeting.options);
+      }, 100);
+    });
+
+    // Close chat
+    document.getElementById('closeChatBtn').addEventListener('click', () => {
+      chatWidget.classList.remove('show');
+      setTimeout(() => {
+        document.getElementById('chatWrapper').style.display = 'none';
+        chatMessages.innerHTML = '';
+      }, 400);
+    });
+
+    // Handle form submission
+    document.getElementById('chatForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (message) {
+        handleOptionSelect(message);
+        messageInput.value = '';
+      }
+    });
+
+    // Handle free text input
+    function handleFreeTextInput(text) {
+      showLoadingIndicator();
+      
+      // Simulate processing time
+      setTimeout(() => {
+        removeLoadingIndicator();
+        
+        // Check for keywords and provide relevant responses
+        if (text.toLowerCase().includes('app') || text.toLowerCase().includes('download')) {
+          showBotMessage(
+            conversationData["Download Apps"].text, 
+            conversationData["Download Apps"].options,
+            conversationData["Download Apps"].appLinks
+          );
+        } 
+        else if (text.toLowerCase().includes('business') || text.toLowerCase().includes('merchant')) {
+          showBotMessage(
+            conversationData["Business App"].text, 
+            conversationData["Business App"].options,
+            conversationData["Business App"].appLinks
+          );
+        }
+        else if (text.toLowerCase().includes('contact') || text.toLowerCase().includes('email') || text.toLowerCase().includes('call')) {
+          showBotMessage(
+            conversationData["Contact Information"].text, 
+            conversationData["Contact Information"].options,
+            conversationData["Contact Information"].contactCard
+          );
+        }
+        else {
+          showBotMessage("I'm not sure I understand. Could you please try one of these options?", 
+                         conversationData.greeting.options);
+        }
+      }, 1500);
+    }
+
+    function handleOptionSelect(option) {
+      showUserMessage(option);
+      
+      // Handle special actions
+      if (option === "Open Email") {
+        window.location.href = "mailto:info@offerbeez.com";
+        return;
+      }
+      
+      if (option === "Call Now") {
+        window.location.href = "tel:+919611240148";
+        return;
+      }
+
+      if (option === "Get Directions") {
+        window.open("https://maps.google.com?q=OfferBeez+2nd+Floor,+No+16,+Puttenahalli+Rd,+Wilson+Garden+Society,+JP+Nagar+7th+Phase,+Bengaluru,+Karnataka+560078", "_blank");
+        return;
+      }
+
+      // Handle back navigation
+      if (option === "← Back" || option.includes("← Back to")) {
+        showLoadingIndicator();
+        setTimeout(() => {
+          removeLoadingIndicator();
+          showBotMessage(conversationData.greeting.text, conversationData.greeting.options);
+        }, 1000);
+        return;
+      }
+
+      // Check if it's a predefined option
+      if (conversationData[option]) {
+        showLoadingIndicator();
+        setTimeout(() => {
+          removeLoadingIndicator();
+          showBotMessage(
+            conversationData[option].text, 
+            conversationData[option].options,
+            conversationData[option].contactCard || conversationData[option].appLinks
+          );
+        }, Math.random() * 1000 + 800);
+      } 
+      else {
+        // Handle free text input
+        handleFreeTextInput(option);
+      }
+    }
+
+    function showBotMessage(text, options = [], additionalContent = null) {
+      const msg = document.createElement('div');
+      msg.className = 'message bot-message';
+      
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.innerHTML = text.replace(/\n/g, '<br>');
+      msg.appendChild(content);
+
+      if (additionalContent) {
+        const extraContent = document.createElement('div');
+        extraContent.innerHTML = additionalContent;
+        msg.appendChild(extraContent);
+      }
+
+      if (options && options.length > 0) {
+        const optionsDiv = document.createElement('div');
+        optionsDiv.className = 'message-options';
+        options.forEach(option => {
+          const btn = document.createElement('button');
+          btn.className = 'option-btn';
+          btn.textContent = option;
+          btn.onclick = () => handleOptionSelect(option);
+          optionsDiv.appendChild(btn);
+        });
+        msg.appendChild(optionsDiv);
+      }
+
+      chatMessages.appendChild(msg);
+      scrollChatToBottom();
+    }
+
+    function showUserMessage(text) {
+      const msg = document.createElement('div');
+      msg.className = 'message user-message';
+      
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.textContent = text;
+      msg.appendChild(content);
+      
+      chatMessages.appendChild(msg);
+      scrollChatToBottom();
+    }
+
+    function showLoadingIndicator() {
+      const loadingDiv = document.createElement('div');
+      loadingDiv.className = 'loading-container';
+      loadingDiv.id = 'loadingIndicator';
+      
+      const dots = document.createElement('div');
+      dots.className = 'loading-dots';
+      dots.innerHTML = `
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+        <div class="loading-dot"></div>
+      `;
+      
+      loadingDiv.appendChild(dots);
+      chatMessages.appendChild(loadingDiv);
+      scrollChatToBottom();
+    }
+
+    function removeLoadingIndicator() {
+      const indicator = document.getElementById('loadingIndicator');
+      if (indicator) {
+        indicator.remove();
+      }
+    }
+
+    function scrollChatToBottom() {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Add some entrance animation to the page
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '0';
+      document.body.style.transition = 'opacity 0.3s ease';
+      setTimeout(() => {
+        document.body.style.opacity = '1';
+      }, 100);
+    });
+  </script>
 </body>
 </html>
