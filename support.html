@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferBeez - Digital Promotion Platform for Local Businesses</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Previous styles remain the same until the Team Section */
+        
+        /* Updated Team Section Styles for right photo layout */
+        .team-section {
+            background-color: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+            padding: 80px 0;
+        }
+        
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .team-member {
+            display: flex;
+            background-color: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid var(--medium-gray);
+            margin-bottom: 30px;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        
+        .team-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .team-image {
+            flex: 0 0 40%;
+            min-height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-member:hover .team-image img {
+            transform: scale(1.05);
+        }
+        
+        .team-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .team-member:hover .team-content h3 {
+            color: var(--primary);
+        }
+        
+        .position {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .quote::before {
+            content: '"';
+            position: absolute;
+            left: 0;
+            top: -5px;
+            font-size: 24px;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+        
+        .bio {
+            color: var(--dark-gray);
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .linkedin-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: #0077B5;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .linkedin-link:hover {
+            background-color: #0077B5;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Alternating layout for team members */
+        .team-member:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .team-image {
+                flex: 0 0 45%;
+                min-height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .team-member {
+                flex-direction: column;
+            }
+            
+            .team-member:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .team-image {
+                flex: 0 0 300px;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-image {
+                min-height: 200px;
+            }
+            
+            .team-content {
+                padding: 20px;
+            }
+            
+            .team-content h3 {
+                font-size: 20px;
+            }
+            
+            .position {
+                font-size: 14px;
+            }
+            
+            .quote, .bio {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Previous HTML content remains the same until the Team Section -->
+
+    <!-- Team Section -->
+    <section class="section team-section" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Visionary Team</h2>
+                <p>The brilliant minds behind OfferBeez's success</p>
+            </div>
+            
+            <div class="team-container">
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="team-content">
+                        <h3>Anantha Somayaji CNS</h3>
+                        <p class="position">Founder & CEO</p>
+                        <p class="quote">Success is forged in innovation and tempered with purpose.</p>
+                        <p class="bio">With over 33 years of expertise in IT, electronics, and consulting, Anantha leads VentureBiz with a vision to transform industries and communities through golden innovation.</p>
+                        <a href="#" class="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="team-image">
+                        <img src="Ananth.jpg" alt="Anantha Somayaji CNS" loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="team-content">
+                        <h3>Madhva Raj Pratinidhi</h3>
+                        <p class="position">Co-Founder & CTO</p>
+                        <p class="quote">Innovation drives impact.</p>
+                        <p class="bio">Madhva Raj Pratinidhi, Co-Founder & CTO, drives VPPL with expertise in enterprise strategy and marketing. With experience at Yahoo, iDECK, and LULU, he's scaled businesses and developed innovative tech solutions.</p>
+                        <a href="#" class="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="team-image">
+                        <img src="Madhva.png" alt="Madhva Raj Pratinidhi" loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="team-content">
+                        <h3>Arun Kumar</h3>
+                        <p class="position">CFO - Director</p>
+                        <p class="quote">Growth thrives on financial agility.</p>
+                        <p class="bio">Arun Kumar, CFO - Director, shapes VPPL's financial strategy with expertise in finance, venture capital, and risk management. Committed to sustainable growth, he enjoys analyzing trends and mentoring startups.</p>
+                        <a href="#" class="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="team-image">
+                        <img src="arun.jpg" alt="Arun Kumar" loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="team-content">
+                        <h3>Vikas V</h3>
+                        <p class="position">CMO - Director</p>
+                        <p class="quote">Stories build brands.</p>
+                        <p class="bio">Vikas V, CMO - Director, drives VPPL's brand and growth with expertise in marketing, sales, and digital strategy. He crafts data-driven campaigns and compelling narratives to boost engagement.</p>
+                        <a href="#" class="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="team-image">
+                        <img src="vikas.jpg" alt="Vikas V" loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Team Member 5 -->
+                <div class="team-member">
+                    <div class="team-content">
+                        <h3>Kannan Rajamnikam</h3>
+                        <p class="position">CTO</p>
+                        <p class="quote">Technology shapes the future.</p>
+                        <p class="bio">Kannan Rajamnikam, CTO, leads VPPL's tech vision with expertise in AI, blockchain, and cloud computing. He builds scalable, innovative solutions to drive growth and transform the industry.</p>
+                        <a href="#" class="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="team-image">
+                        <img src="Kannan.jpg" alt="Kannan Rajamnikam" loading="lazy">
+                    </div>
+                </div>
+                
+                <!-- Team Member 6 -->
+                <div class="team-member">
+                    <div class="team-content">
+                        <h3>New Team Member</h3>
+                        <p class="position">COO - Director</p>
+                        <p class="quote">Excellence is a continuous journey.</p>
+                        <p class="bio">With extensive experience in operations and business management, our newest team member brings strategic vision and execution excellence to drive OfferBeez's operational success and scalability.</p>
+                        <a href="#" class="linkedin-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="team-image">
+                        <img src="Offer Beez Logo Eng.png" alt="New Team Member" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rest of the HTML content remains the same -->
+    
+    <script>
+        // JavaScript remains the same
+    </script>
+</body>
+</html>
