@@ -1061,11 +1061,13 @@
             font-size: 14px;
         }
 
-        /* Support Container */
+        /* UPDATED SUPPORT AND WHATSAPP BUTTON POSITIONING */
+        
+        /* Support Container - Higher position */
         .support-container {
             position: fixed;
-            bottom: 74px;
-            right: 34px;
+            bottom: 130px;
+            right: 24px;
             z-index: 1000;
         }
 
@@ -1113,10 +1115,56 @@
             animation: pulse 2s infinite;
         }
 
+        /* WhatsApp Container - Lower position */
+        .whatsapp-container {
+            position: fixed;
+            bottom: 14px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            background-color: #1e293b;
+            color: #fff;
+            padding: 12px 18px;
+            border-radius: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .whatsapp-button i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #0f172a;
+        }
+
+        .whatsapp-support {
+            background-color: #25D366 !important;
+            color: #fff !important;
+        }
+
+        .whatsapp-support:hover {
+            background-color: #128C7E !important;
+        }
+
         /* Chat Widget */
         .offerbeez-chat-widget {
             position: fixed;
-            bottom: 80px;
+            bottom: 180px;
             right: 24px;
             width: 380px;
             max-width: calc(100vw - 48px);
@@ -1516,52 +1564,6 @@
             max-width: 80%;
         }
 
-        /* WhatsApp Container */
-        .whatsapp-container {
-            position: fixed;
-            bottom: 14px;
-            right: 24px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .whatsapp-button {
-            display: flex;
-            align-items: center;
-            background-color: #1e293b;
-            color: #fff;
-            padding: 12px 18px;
-            border-radius: 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .whatsapp-button i {
-            margin-right: 10px;
-            font-size: 18px;
-        }
-
-        .whatsapp-button:hover {
-            background-color: #0f172a;
-        }
-
-        .whatsapp-support {
-            background-color: #25D366 !important;
-            color: #fff !important;
-        }
-
-        .whatsapp-support:hover {
-            background-color: #128C7E !important;
-        }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -1622,7 +1624,7 @@
             30% { transform: translateY(-3px); opacity: 1; }
         }
         
-        /* Enhanced Mobile Styles */
+        /* ENHANCED MOBILE RESPONSIVE STYLES */
         @media (max-width: 768px) {
             .navbar {
                 padding: 0 15px;
@@ -1722,18 +1724,10 @@
                 text-align: center;
             }
 
-            /* Enhanced Chat Widget Responsiveness */
-            .offerbeez-chat-widget {
-                width: calc(100% - 20px);
-                right: 10px;
-                bottom: 60px;
-                left: 10px;
-                max-height: 70vh;
-            }
-            
+            /* MOBILE BUTTON POSITIONING */
             .support-container {
                 right: 15px;
-                bottom: 15px;
+                bottom: 110px;
             }
             
             .support-button {
@@ -1743,6 +1737,29 @@
             
             .support-button i {
                 font-size: 16px;
+            }
+            
+            .whatsapp-container {
+                right: 15px;
+                bottom: 15px;
+            }
+            
+            .whatsapp-button {
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+            
+            .whatsapp-button i {
+                font-size: 16px;
+            }
+
+            /* MOBILE CHAT WIDGET */
+            .offerbeez-chat-widget {
+                width: calc(100% - 20px);
+                right: 10px;
+                bottom: 120px;
+                left: 10px;
+                max-height: 70vh;
             }
             
             .chat-container {
@@ -1792,14 +1809,9 @@
                 font-size: 12px;
                 padding: 8px 12px;
             }
-
-            .whatsapp-container {
-                right: 8px;
-                bottom: 8px;
-            }
         }
         
-        /* Small Mobile Devices */
+        /* SMALL MOBILE DEVICES */
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
@@ -1829,25 +1841,44 @@
                 font-size: 14px;
             }
 
+            /* VERY SMALL MOBILE BUTTON POSITIONING */
+            .support-container {
+                right: 12px;
+                bottom: 100px;
+            }
+            
+            .whatsapp-container {
+                right: 12px;
+                bottom: 12px;
+            }
+
             .offerbeez-chat-widget {
                 width: calc(100% - 16px);
                 right: 8px;
                 left: 8px;
-                bottom: 50px;
+                bottom: 110px;
                 max-height: 75vh;
-            }
-            
-            .whatsapp-container {
-                right: 8px;
-                bottom: 8px;
-            }
-            
-            .support-container {
-                right: 8px;
-                bottom: 8px;
             }
         }
         
+        /* LARGE TABLETS AND DESKTOP */
+        @media (min-width: 769px) {
+            .support-container {
+                right: 34px;
+                bottom: 140px;
+            }
+            
+            .whatsapp-container {
+                right: 24px;
+                bottom: 14px;
+            }
+            
+            .offerbeez-chat-widget {
+                bottom: 190px;
+                right: 24px;
+            }
+        }
+
         /* Large Tablets */
         @media (min-width: 769px) and (max-width: 1024px) {
             .container {
@@ -1886,7 +1917,7 @@
             }
         }
 
-        /* Dark mode support */
+        /* DARK MODE SUPPORT */
         @media (prefers-color-scheme: dark) {
             .offerbeez-chat-widget {
                 background: #1e1e1e;
