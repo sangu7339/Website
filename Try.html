@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OfferBeez Support Chat</title>
+    <title>Support Chat</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #FF5A5F;
-            --primary-dark: #E53945;
-            --secondary: #00A0B0;
+            --primary: #4285F4;
+            --primary-dark: #3367D6;
+            --secondary: #34A853;
             --light: #FFFFFF;
             --light-gray: #F5F7FA;
             --medium-gray: #E0E6ED;
@@ -19,7 +19,7 @@
             --shadow-lg: 0 8px 24px rgba(0,0,0,0.16);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             --success: #4CAF50;
-            --warning: #FF9800;
+            --warning: #FBBC05;
         }
         
         * {
@@ -88,7 +88,7 @@
         }
 
         /* Chat Widget */
-        .offerbeez-chat-widget {
+        .chat-widget {
             position: fixed;
             bottom: 80px;
             right: 24px;
@@ -105,7 +105,7 @@
             border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
-        .offerbeez-chat-widget.show {
+        .chat-widget.show {
             transform: scale(1);
             opacity: 1;
         }
@@ -120,28 +120,11 @@
         .chat-header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
-            padding: 12px 16px;
+            padding: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
             position: relative;
-        }
-
-        .logo-container {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border-radius: 8px;
-            padding: 4px;
-        }
-
-        .logo-container img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
         }
 
         .header-info {
@@ -208,7 +191,7 @@
         }
 
         .chat-messages::-webkit-scrollbar-thumb {
-            background: rgba(255, 90, 95, 0.3);
+            background: rgba(66, 133, 244, 0.3);
             border-radius: 3px;
         }
 
@@ -283,7 +266,7 @@
 
         .option-btn {
             background: white;
-            border: 1px solid rgba(255, 90, 95, 0.2);
+            border: 1px solid rgba(66, 133, 244, 0.2);
             border-radius: 20px;
             padding: 8px 14px;
             font-size: 12px;
@@ -294,7 +277,7 @@
         }
 
         .option-btn:hover {
-            background: rgba(255, 90, 95, 0.05);
+            background: rgba(66, 133, 244, 0.05);
             transform: translateY(-1px);
         }
 
@@ -437,7 +420,7 @@
         .chat-input-form input:focus {
             border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 2px rgba(255, 90, 95, 0.1);
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.1);
         }
 
         .chat-input-form input::placeholder {
@@ -558,7 +541,7 @@
 
         /* Responsive adjustments */
         @media (max-width: 480px) {
-            .offerbeez-chat-widget {
+            .chat-widget {
                 width: calc(100% - 32px);
                 right: 16px;
                 bottom: 70px;
@@ -581,13 +564,13 @@
 
         /* Dark mode support */
         @media (prefers-color-scheme: dark) {
-            .offerbeez-chat-widget {
+            .chat-widget {
                 background: #1e1e1e;
                 border-color: #333;
             }
 
             .chat-header {
-                background: linear-gradient(135deg, #d43a3f 0%, #00838f 100%);
+                background: linear-gradient(135deg, #3367d6 0%, #2d9140 100%);
             }
 
             .bot-message .message-content {
@@ -597,12 +580,12 @@
             }
 
             .user-message .message-content {
-                background: linear-gradient(135deg, #d43a3f 0%, #00838f 100%);
+                background: linear-gradient(135deg, #3367d6 0%, #2d9140 100%);
             }
 
             .option-btn {
                 background: #2d2d2d;
-                color: #FF5A5F;
+                color: #4285F4;
                 border-color: #444;
             }
 
@@ -653,12 +636,11 @@
 
     <!-- Chat Widget -->
     <div id="chatWrapper" style="display: none;">
-        <div class="offerbeez-chat-widget" id="chatWidget">
+        <div class="chat-widget" id="chatWidget">
             <div class="chat-container">
                 <div class="chat-header">
-                   
                     <div class="header-info">
-                        <h3>Support</h3>
+                        <h3>Support Center</h3>
                         <p><span class="status-indicator"></span> Online now</p>
                     </div>
                     <button class="close-chat" id="closeChatBtn" aria-label="Close chat">
@@ -687,12 +669,12 @@
         // Enhanced conversation data
         const conversationData = {
             greeting: {
-                text: "<b>👋 Welcome to OfferBeez Support!</b> <i>How can we assist you today?</i>",
+                text: "<b>👋 Welcome to our Support Chat!</b> <i>How can we assist you today?</i>",
                 options: ["Product Features", "Business Inquiry", "Technical Support", "Contact Information", "Download Apps"],
                 typingDelay: 800
             },
             "Product Features": {
-                text: "<b>🌟 OfferBeez Platform Features:</b>\n\n• <i>Business Promotion App</i>\n• <i>Consumer Deal Discovery</i>\n• <i>Sales Partner Program</i>\n• <i>Real-time Analytics</i>\n• <i>Location-based Offers</i>\n\n<b>Which aspect would you like to know more about?</b>",
+                text: "<b>🌟 Platform Features:</b>\n\n• <i>Business Promotion App</i>\n• <i>Consumer Deal Discovery</i>\n• <i>Sales Partner Program</i>\n• <i>Real-time Analytics</i>\n• <i>Location-based Offers</i>\n\n<b>Which aspect would you like to know more about?</b>",
                 options: ["Business App", "Consumer App", "Sales Partner", "← Back"],
                 typingDelay: 1200
             },
@@ -721,7 +703,7 @@
                         <i>(Mon-Fri, 9AM-6PM IST)</i></p>
                         
                         <div class="contact-title"><i class="fas fa-envelope"></i> <b>Email</b></div>
-                        <p>info@offerbeez.com</p>
+                        <p>info@example.com</p>
                     </div>
                 `,
                 typingDelay: 800
@@ -731,13 +713,13 @@
                 options: ["Business App", "Consumer App", "Partner App", "← Back"],
                 appLinks: `
                     <div class="app-links">
-                        <a href="https://business.offerbeez.in" target="_blank" class="app-link">
+                        <a href="#" target="_blank" class="app-link">
                             <i class="fas fa-briefcase"></i> <b>Business App</b>
                         </a>
-                        <a href="https://user.offerbeez.in" target="_blank" class="app-link">
+                        <a href="#" target="_blank" class="app-link">
                             <i class="fas fa-shopping-bag"></i> <b>Consumer App</b>
                         </a>
-                        <a href="https://partner.offerbeez.in" target="_blank" class="app-link">
+                        <a href="#" target="_blank" class="app-link">
                             <i class="fas fa-handshake"></i> <b>Partner App</b>
                         </a>
                     </div>
@@ -749,10 +731,10 @@
                 options: ["Open Email", "← Back to Contacts"],
                 contactCard: `
                     <div class="contact-card">
-                        <p><b><i class="fas fa-inbox"></i> General Inquiries:</b> info@offerbeez.com</p>
-                        <p><b><i class="fas fa-handshake"></i> Business Partnerships:</b> partnerships@offerbeez.com</p>
-                        <p><b><i class="fas fa-tools"></i> Technical Support:</b> support@offerbeez.com</p>
-                        <a href="mailto:info@offerbeez.com" class="contact-action">
+                        <p><b><i class="fas fa-inbox"></i> General Inquiries:</b> info@example.com</p>
+                        <p><b><i class="fas fa-handshake"></i> Business Partnerships:</b> partnerships@example.com</p>
+                        <p><b><i class="fas fa-tools"></i> Technical Support:</b> support@example.com</p>
+                        <a href="mailto:info@example.com" class="contact-action">
                             <i class="fas fa-envelope"></i> <b>Email Now</b>
                         </a>
                     </div>
@@ -787,7 +769,7 @@
                         <p><i>Monday-Friday</i><br>
                         <i>10:00 AM - 5:00 PM IST</i></p>
                         
-                        <a href="https://maps.google.com?q=OfferBeez+2nd+Floor,+No+16,+Puttenahalli+Rd,+Wilson+Garden+Society,+JP+Nagar+7th+Phase,+Bengaluru,+Karnataka+560078" 
+                        <a href="https://maps.google.com" 
                         target="_blank" class="contact-action">
                             <i class="fas fa-map-marker-alt"></i> <b>Get Directions</b>
                         </a>
@@ -796,11 +778,11 @@
                 typingDelay: 800
             },
             "Business App": {
-                text: "<b>📱 OfferBeez Business App</b>\n\n<i>Manage your promotions, track performance, and connect with customers through our comprehensive business portal.</i>",
+                text: "<b>📱 Business App</b>\n\n<i>Manage your promotions, track performance, and connect with customers through our comprehensive business portal.</i>",
                 options: ["Download Business App", "Features", "Pricing", "← Back"],
                 appLinks: `
                     <div class="app-links">
-                        <a href="https://business.offerbeez.in" target="_blank" class="app-link">
+                        <a href="#" target="_blank" class="app-link">
                             <i class="fas fa-external-link-alt"></i> <b>Business Portal</b>
                         </a>
                     </div>
@@ -808,11 +790,11 @@
                 typingDelay: 1000
             },
             "Consumer App": {
-                text: "<b>🛍️ OfferBeez Consumer App</b>\n\n<i>Discover amazing deals and promotions from local businesses. Save money on your favorite products and services!</i>",
+                text: "<b>🛍️ Consumer App</b>\n\n<i>Discover amazing deals and promotions from local businesses. Save money on your favorite products and services!</i>",
                 options: ["Download Consumer App", "How It Works", "Browse Deals", "← Back"],
                 appLinks: `
                     <div class="app-links">
-                        <a href="https://user.offerbeez.in/" target="_blank" class="app-link">
+                        <a href="#" target="_blank" class="app-link">
                             <i class="fas fa-external-link-alt"></i> <b>Consumer App</b>
                         </a>
                     </div>
@@ -820,11 +802,11 @@
                 typingDelay: 1000
             },
             "Partner App": {
-                text: "<b>🤝 OfferBeez Partner App</b>\n\n<i>Join our network and earn commissions by helping businesses grow. Become a sales partner today!</i>",
+                text: "<b>🤝 Partner App</b>\n\n<i>Join our network and earn commissions by helping businesses grow. Become a sales partner today!</i>",
                 options: ["Download Partner App", "Benefits", "Earnings", "← Back"],
                 appLinks: `
                     <div class="app-links">
-                        <a href="https://partner.offerbeez.in" target="_blank" class="app-link">
+                        <a href="#" target="_blank" class="app-link">
                             <i class="fas fa-external-link-alt"></i> <b>Partner Portal</b>
                         </a>
                     </div>
@@ -968,7 +950,7 @@
             
             // Handle special actions
             if (option === "Open Email") {
-                window.location.href = "mailto:info@offerbeez.com";
+                window.location.href = "mailto:info@example.com";
                 return;
             }
             
@@ -978,7 +960,7 @@
             }
 
             if (option === "Get Directions") {
-                window.open("https://maps.google.com?q=OfferBeez+2nd+Floor,+No+16,+Puttenahalli+Rd,+Wilson+Garden+Society,+JP+Nagar+7th+Phase,+Bengaluru,+Karnataka+560078", "_blank");
+                window.open("https://maps.google.com", "_blank");
                 return;
             }
 
@@ -1033,7 +1015,7 @@
                     <div class="typing-dot"></div>
                     <div class="typing-dot"></div>
                 </div>
-                <span>OfferBeez is typing...</span>
+                <span>Support is typing...</span>
             `;
             
             chatMessages.appendChild(typingDiv);

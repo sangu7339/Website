@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfferBeez Support Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF5A5F;
+            --primary-dark: #E53945;
+            --secondary: #00A0B0;
+            --accent: #FFC107;
+            --light: #FFFFFF;
+        }
+        
+        /* Support Container */
+        .support-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+        }
+
+        .support-button {
+            display: flex;
+            align-items: center;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 12px 18px;
+            border-radius: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .support-button i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .support-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Chat Widget */
+        .offerbeez-chat-widget {
+            position: fixed;
+            bottom: 80px;
+            right: 24px;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .offerbeez-chat-widget.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .close-chat {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            height: 300px;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .message-content {
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .bot-message .message-content {
+            background: white;
+            color: #333;
+            border-radius: 0 18px 18px 18px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .user-message .message-content {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 18px 0 18px 18px;
+        }
+
+        .message-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 1px solid rgba(255,90,95,0.2);
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 12px;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:hover {
+            background: rgba(255,90,95,0.05);
+            transform: translateY(-1px);
+        }
+
+        .chat-input-form {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background: white;
+        }
+
+        .chat-input-form input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input-form button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            margin-left: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Loading Animation */
+        .typing-indicator {
+            display: flex;
+            padding: 10px 15px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 3px;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .offerbeez-chat-widget {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 70px;
+            }
+            
+            .support-container {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Support Chat Button -->
+    <div class="support-container">
+        <a href="#" class="support-button" id="openChatLink">
+            <i class="fas fa-headset"></i>
+            Support
+        </a>
+    </div>
+
+    <!-- Chat Widget -->
+    <div class="offerbeez-chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <h3>OfferBeez Support</h3>
+            <button class="close-chat" id="closeChatBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be inserted here by JavaScript -->
+        </div>
+        
+        <form class="chat-input-form" id="chatForm">
+            <input type="text" id="messageInput" placeholder="Type your message..." required>
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Chat Support Functionality
+        const chatMessages = document.getElementById('chatMessages');
+        const chatWidget = document.getElementById('chatWidget');
+        
+        // Conversation flow
+        const conversation = {
+            greeting: {
+                message: "👋 Welcome to OfferBeez Support! How can I help you today?",
+                options: [
+                    { text: "Business Portal Help", response: "For business support, please visit our <a href='https://business.offerbeez.in' style='color: var(--primary); font-weight: 500;'>Business Portal</a> or email us at <strong>support@offerbeez.com</strong>" },
+                    { text: "Partner Program", response: "Learn about our partner program at <a href='https://partner.offerbeez.in' style='color: var(--primary); font-weight: 500;'>Partner Portal</a>. Earn commissions by onboarding businesses!" },
+                    { text: "Consumer App", response: "Download our consumer app at <a href='https://user.offerbeez.in' style='color: var(--primary); font-weight: 500;'>user.offerbeez.in</a> to discover the best local deals." },
+                    { text: "Contact Support", response: "You can reach our support team at <strong>support@offerbeez.com</strong> or call <strong>+91 9611240148</strong> (Mon-Fri, 9AM-6PM IST)" }
+                ]
+            }
+        };
+        
+        // Open chat
+        document.getElementById('openChatLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            chatWidget.classList.add('show');
+            showBotMessage(conversation.greeting.message);
+            showOptions(conversation.greeting.options);
+        });
+        
+        // Close chat
+        document.getElementById('closeChatBtn').addEventListener('click', function() {
+            chatWidget.classList.remove('show');
+        });
+        
+        // Handle form submission
+        document.getElementById('chatForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = document.getElementById('messageInput').value.trim();
+            if (message) {
+                showUserMessage(message);
+                document.getElementById('messageInput').value = '';
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Simulate bot response after delay
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    showBotMessage("Thanks for your message! For immediate assistance, please choose one of these options:");
+                    showOptions(conversation.greeting.options);
+                }, 1500);
+            }
+        });
+        
+        // Show bot message
+        function showBotMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Show user message
+        function showUserMessage(text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            messageDiv.innerHTML = `<div class="message-content">${text}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Show options
+        function showOptions(options) {
+            const optionsDiv = document.createElement('div');
+            optionsDiv.className = 'message-options';
+            
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = option.text;
+                btn.onclick = function() {
+                    showUserMessage(option.text);
+                    showTypingIndicator();
+                    setTimeout(() => {
+                        removeTypingIndicator();
+                        showBotMessage(option.response);
+                    }, 800);
+                };
+                optionsDiv.appendChild(btn);
+            });
+            
+            const container = document.createElement('div');
+            container.className = 'message bot-message';
+            container.appendChild(optionsDiv);
+            chatMessages.appendChild(container);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Show typing indicator
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = `
+                <div class="message-content">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Remove typing indicator
+        function removeTypingIndicator() {
+            const indicator = document.getElementById('typingIndicator');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+    </script>
+</body>
+</html>
